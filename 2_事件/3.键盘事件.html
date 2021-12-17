@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 绑定keyup事件，当是enter键keyup时，调用showInfo函数 -->
+        <!-- 其他别名见笔记 -->
+        <input type="text" placeholder="请输入……" @keyup.enter='showInfo'>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+
+            },
+            methods: {
+                showInfo(e) {//获取当前事件
+                    console.log(e.target.value)
+                }
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

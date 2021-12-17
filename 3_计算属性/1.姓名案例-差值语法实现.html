@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        姓:<input type="text" v-model='firstName'>
+        <br>
+        名:<input type="text" v-model='lastName'>
+        <br>
+        <!-- 但是如果要对姓和名的样式进行一些操作，那么表达式会很长，vue不推荐这样做 -->
+        全名:<span>{{firstName+'-'+lastName}}</span>
+        <br>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: '李',
+                lastName: '华'
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
