@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <button v-on:click='func1'>点击1</button>
+        <button v-on:click='func2(66,$event)'>点击2</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+
+            },
+            methods: {
+                func1(e) {
+                    console.log(e.type);//输出click
+                    console.log(e.target);//输出button标签
+                    e.target.innerHTML = '改内容';//把button上显示的内容改变为：改内容
+                },
+                func2(num, e) {
+                    console.log(e.target);
+                    console.log(num);
+                }
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

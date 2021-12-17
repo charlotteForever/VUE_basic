@@ -10,16 +10,29 @@
 
 <body>
     <script>
+        let num = 18;//修改num的值，如果get age时，会修改age来同步
         let caicai = {
-            age: 18
+            sex: 'famale'
         }
-        Object.defineProperty(caicai, 'sex', {
-            value: 'famale'//但是默认是不可枚举的,for in打印打印不出来
+        Object.defineProperty(caicai, 'age', {
+            //但是默认是不可枚举的,for in打印打印不出来;
+            //默认不可以修改，wirtable：true
+            //默认不可以删除，configurable：true
+            // value: num,
+            get: function () {//默认把age的值置为其返回值
+                console.log('我在获取age');
+                return num;
+            },
+            set: function (value) {
+                console.log('我在修改age');
+                num = age;//修改caicai的age属性会调用set函数，然后同步到num
+            }
+
         })
-        console.log(caicai);//该对象里sex属性的颜色比age属性浅
+        console.log(caicai);//该对象里age属性的颜色比age属性浅
         for (k in caicai) {
-            console.log(k);//输出age
-            console.log(caicai[k]);//输出18
+            console.log(k);//输出sex
+            console.log(caicai[k]);//输出famale
         }
         //如果在value下面加上enumerable:true的话,就可以枚举
     </script>

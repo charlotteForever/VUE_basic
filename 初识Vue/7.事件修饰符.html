@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        #box1 {
+            height: 120px;
+            width: 120px;
+            background-color: pink;
+            overflow: auto;
+        }
+
+        #box1 li {
+            height: 30px;
+            width: 50px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root">
+        <!-- .prevent 阻止默认事件-->
+        <!-- 弹出此弹窗之后会跳转，如果想停止跳转：@click.prevent -->
+        <a href="https://www.baidu.com/" @click.prevent='showInfo1'>.prevent的测试</a>
+        <hr>
+
+        <!-- .stop 阻止冒泡-->
+        <div id="child" @click='showInfo1'>
+            <!-- 会有两次弹窗，如果想阻止跳转：@click.stop  -->
+            <!-- (在孩子上，且只能阻止冒泡到父节点上；如想阻止冒泡到祖先节点，也要在父节点上加stop修饰) -->
+            <a href="#" @click.stop='showInfo1'>.stop的测试</a>
+        </div>
+        <hr>
+
+        <!-- .once 只响应一次-->
+        <!-- 加了.once 第二次点击时不响应-->
+        <a href="#" @click.once='showInfo1'>.once的测试</a>
+        <hr>
+
+        <!-- .capture事件在捕获阶段响应 -->
+        <!-- 在父元素上加，加了之后先showInfo1，再showInfo2 -->
+        <div @click.capture='showInfo1'>
+            <a href="#" @click='showInfo2'>.capture的测试</a>
+        </div>
+        <hr>
+
+        <!-- .self只有在e.target是当前元素时才响应 -->
+        <!-- 本来可以正常响应，在加了.self之后不响应。这时的e.target是我们点击的a标签-->
+        <div @click.self='showInfo1'>
+            <a href="#">.self的测试</a>
+        </div>
+        <hr>
+
+        <!-- .passive 立即执行当前默认行为，无需等待事件回调结束 -->
+        <div id="box1" @scroll='showInfo3'>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+
+            },
+            methods: {
+                showInfo1(e) {
+                    alert('点击成功1')
+                },
+                showInfo2() {
+                    alert('点击成功2')
+                },
+                showInfo3() {
+                    for (var i = 0; i < 1000000; i++) {
+                        console.log('#');
+                    }
+                }
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
