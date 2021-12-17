@@ -17,10 +17,12 @@
         名:<input type="text" v-model='lastName'>
         <br>
         <!-- 如果不写括号，则输出函数体；写括号输出函数返回值 -->
-        全名:<span>{{setName()}}</span>
+        全名:<span>{{fullName}}</span>
         <br>
     </div>
     <script>
+        // 1.如果对data里的属性进行一次修改，就会再读一次fullName，再调用一次get
+        // 2.对fullName进行一次修改，会对原data里的属性进行修改，调用两次get
         var vm = new Vue({
             el: '#root',
             data: {
@@ -28,13 +30,20 @@
                 lastName: '三'
             },
             methods: {
-                setName(e) {
-                    //this是vm对象
-                    return this.firstName + '-' + this.lastName
-                }
             },
             computed: {
-
+                fullName: {
+                    get() {
+                        console.log('调用了get')
+                        return this.firstName + '-' + this.lastName;
+                    },
+                    set(value) {//set就要传一个值进来
+                        console.log('调用了get');
+                        let arr = value.split('-');
+                        this.firstName = arr[0];
+                        this.lastName = arr[1];
+                    }
+                }
             }
         })
     </script>
