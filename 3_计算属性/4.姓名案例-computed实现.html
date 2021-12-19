@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 双向绑定，input的value变了，则data里的值也会变 -->
+        姓:<input type="text" v-model='firstName'>
+        <br>
+        名:<input type="text" v-model='lastName'>
+        <br>
+        <!-- 如果不写括号，则输出函数体；写括号输出函数返回值 -->
+        全名:<span>{{fullName}}</span>
+        <br>
+    </div>
+    <script>
+        // 1.如果对data里的属性进行一次修改，就会再读一次fullName，再调用一次get
+        // 2.对fullName进行一次修改，会对原data里的属性进行修改，调用两次get
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: '张',
+                lastName: '三'
+            },
+            methods: {
+            },
+            computed: {
+                fullName: {
+                    get() {
+                        console.log('调用了get')
+                        return this.firstName + '-' + this.lastName;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
