@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 如果是id没有问题，如果是index就会出错 -->
+        <button @click="add">人员++</button>
+        <ul>
+            <li v-for='(p,index) in persons' :key="index">
+                {{p.name}}--{{p.age}}
+                <input type="text" name="" id="">
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    { id: 01, age: 18, name: '张三' },
+                    { id: 02, age: 20, name: '李四' }
+                ]
+            },
+            methods: {
+                add() {
+                    const person = {
+                        id: 04,
+                        age: 30,
+                        name: '老刘'
+                    }
+                    this.persons.unshift(person)
+                }
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

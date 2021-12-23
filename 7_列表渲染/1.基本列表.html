@@ -11,10 +11,26 @@
 
 <body>
     <div id="root">
+        <!--  人员列表（遍历数组）-->
         <ul>
             <!-- key唯一标识一个列表行，可以是id也可以是index -->
-            <li v-for='p in persons' :key="p.id">
-                {{p.name}}-{{p.age}}
+            <!-- 只传一个参数，为数组里的一个对象；传两个参数，第一个是对象，第二个是索引 -->
+            <li v-for='(p,index) in persons' :key="p.id">
+                {{p.name}}-{{index}}
+            </li>
+        </ul>
+
+        <!--  人员列表（遍历对象中的键值对)-->
+        <ul>
+            <li v-for='(value,key) in car' :key="key">
+                {{value}}-{{key}}
+            </li>
+        </ul>
+
+        <!--  遍历字符串-->
+        <ul>
+            <li v-for='(value,index) in str' :key="index">
+                {{value}}-{{index}}
             </li>
         </ul>
     </div>
@@ -25,7 +41,13 @@
                 persons: [
                     { id: 01, age: 18, name: '张三' },
                     { id: 02, age: 20, name: '李四' }
-                ]
+                ],
+                car: {
+                    name: 'bmw',
+                    price: '10',
+                },
+                str: 'hello'
+
             },
             methods: {
 
