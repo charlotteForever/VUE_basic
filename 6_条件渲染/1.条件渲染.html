@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- v-if和v-show基本用法一样，但是原理不同 -->
+        <!-- 基本用法1 -->
+        <h2 v-show='a'>huayecaicai</h2>
+        <hr>
+        <hr>
+
+        <!-- 基本用法2 -->
+        <h2>n的值为:{{n}}</h2>
+        <button @click='n++'>n++</button>
+        <h4 v-show='n===1'>Angular</h4>
+        <h4 v-show='n===2'>React</h4>
+        <h4 v-show='n===3'>Vue</h4>
+        <hr>
+        <hr>
+
+        <!-- v-if和v-else-if等搭配使用 -->
+        <h2>n的值为:{{n}}</h2>
+        <button @click='n++'>n++</button>
+        <h4 v-if='n===1'>Angular</h4>
+        <!-- 如果v-if成立，那么v-else-if就不会执行 -->
+        <h4 v-else-if='n===1'>React</h4>
+        <!-- 如果前面的判断都不成立，那么执行v-else -->
+        <h4 v-else>Vue</h4>
+        <hr>
+        <hr>
+
+        <!-- template的用法 -->
+        <!-- 想让他们同时显示出来 -->
+        <!-- 或者加上相同的v-if/show (太麻烦)-->
+        <!-- 或者加一个大盒子 (改变dom结构)-->
+        <!-- 使用template正好 -->
+        <template v-show='ture'>
+            <h3>你好</h3>
+            <h3>尚硅谷</h3>
+            <h3>北京</h3>
+        </template>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                n: 0,
+                a: true
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

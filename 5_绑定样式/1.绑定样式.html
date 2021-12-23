@@ -55,6 +55,9 @@
         <hr>
         <!--  绑定样式的对象写法 样式的个数和名字确定，但是样式是否存在不确定-->
         <div class="basic">{{name}}</div>
+        <hr>
+        <!-- 绑定样式的style写法 -->
+        <div class="basic" :style="styleObj">{{name}}</div>
     </div>
     <script>
         var vm = new Vue({
@@ -63,7 +66,12 @@
                 name: '花椰菜',
                 mood: 'normal',
                 classArr: [],
-                classObj: null
+                classObj: null,
+                styleObj: {
+                    // 里面的样式名要驼峰写法
+                    fontSize: '40px',
+                    backgroundColor: 'red'
+                }
             },
             methods: {
                 changeMood1() {
