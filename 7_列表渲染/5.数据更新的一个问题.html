@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <button @click='updateMei'>更新马冬梅信息</button>
+        <ul>
+            <li v-for='(p,id) in persons' :key="p.id">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    { id: 01, age: 18, name: '马冬梅' },
+                    { id: 02, age: 40, name: '周杰伦' },
+                    { id: 03, age: 30, name: '陈学冬' },
+                    { id: 04, age: 26, name: '张杰' },
+                ],
+            },
+            methods: {
+                updateMei() {
+                    //可行
+                    // this.persons[0].name = '马老师';
+                    // this.persons[0].age = 20
+
+                    //不可行
+                    //如果先打开控制台再打开vue开发者工具，则data里的会改变但页面不变
+                    //如果先打开开发者工具再打开控制台，则都不会变
+                    this.persons[0] = { id: 01, age: 20, name: '马老师' }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

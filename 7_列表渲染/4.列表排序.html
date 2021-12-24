@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="text" placeholder="请输入……" v-model="str">
+        <!-- 对filPersonl里的进行操作 -->
+        <button @click='sortType=1'>年龄升序</button>
+        <button @click='sortType=2'>年龄降序</button>
+        <button @click='sortType=0'>原始顺序</button>
+        <ul>
+            <li v-for='(p,id) in filPerson' :key="p.id">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    { id: 01, age: 18, name: '周冬雨' },
+                    { id: 02, age: 40, name: '周杰伦' },
+                    { id: 03, age: 30, name: '陈学冬' },
+                    { id: 04, age: 26, name: '张杰' },
+                ],
+                str: '',
+                sortType: 0,
+            },
+            methods: {
+
+            },
+            computed: {
+                // 重要思想：过滤和排序不分家
+                filPerson: {
+                    get() {
+                        const arr = this.persons.filter((p) => {
+                            return p.name.indexOf(this.str) !== -1
+                        });
+                        //对arr进行排序(根据年龄)
+                        if (this.sortType) {
+                            arr.sort((p1, p2) => {
+                                return this.sortType == 1 ? p1.age - p2.age : p2.age - p1.age
+                            })
+                        }
+                        return arr;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
