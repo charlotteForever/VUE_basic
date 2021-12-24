@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = {
+            name: '李华',
+            address: '丁香路'
+        }
+        let obs = new Observer(data);//obs模拟vm
+        console.log(obs);
+        function Observer(obj) {
+            // 取到所有对象里的属性,返回一个数组
+            const keys = Object.keys(obj);
+            //对数组进行遍历,k是当前的元素
+            //把当前的属性绑定到obs对象上，并设置getter和setter
+            keys.forEach((k) => {
+                Object.defineProperty(this, k, {
+                    get() {
+                        return obj[k];//返回属性的值
+                    },
+                    set(val) {//val是新值，修改属性时，默认调用set
+                        console.log('我被修改了，我要重新解析模板，生成新的虚拟dom')
+                        obj[k] = val;
+                    }
+
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>
