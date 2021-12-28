@@ -16,6 +16,11 @@
         }
         let obs = new Observer(data);//obs模拟vm
         console.log(obs);
+
+        // //准备一个vm实例对象
+        let vm = {}
+        vm._data = data = obs
+
         function Observer(obj) {
             // 取到所有对象里的属性,返回一个数组
             const keys = Object.keys(obj);
@@ -27,7 +32,7 @@
                         return obj[k];//返回属性的值
                     },
                     set(val) {//val是新值，修改属性时，默认调用set
-                        console.log('我被修改了，我要重新解析模板，生成新的虚拟dom')
+                        console.log('我被修改了，我要重新解析模板，生成新的虚拟dom');
                         obj[k] = val;
                     }
 

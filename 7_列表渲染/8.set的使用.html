@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h4>姓名:{{name}}</h4>
+        <h4>年龄:{{age}}</h4>
+        <h4>性别:{{sex}}</h4>
+
+    </div>
+    <!-- 想在一个vm对象里面加上新数据，且实现响应式 -->
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'lili',
+                age: 20,
+                // 如果把一个不存在的属性显示在页面上会报错
+                // 如果把一个已经存在的对象里面不存在的属性显示在页面上，会不显示
+                friend: {
+                    name: 'lihua',
+                    age: 23
+                }
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
