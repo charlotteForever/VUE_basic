@@ -14,10 +14,11 @@
         <h4>姓名:{{name}}</h4>
         <h4>年龄:{{age}}</h4>
         <!-- <h4>性别:{{sex}}</h4> -->
-        <h4>朋友的名字:{{friend.name}}</h4>
-        <button @click="addSex">点击此按钮给朋友添加一个性别</button>
-        <h4 v-if='friend.sex'>朋友的性别:{{friend.sex}}</h4>
-
+        <ul>
+            <li v-show='hobby' v-for='(h,index) in hobby' :key='index'>
+                {{h}}
+            </li>
+        </ul>
 
     </div>
     <!-- 想在一个vm对象里面加上新数据，且实现响应式 -->
@@ -29,15 +30,9 @@
                 age: 20,
                 // 如果把一个不存在的属性显示在页面上会报错
                 // 如果把一个已经存在的对象里面不存在的属性显示在页面上，会不显示
-                friend: {
-                    name: 'lihua',
-                    age: 23
-                }
+                hobby: []
             },
             methods: {
-                addSex() {
-                    this.$set(this.friend, 'sex', '男');
-                }
             },
             computed: {
 
