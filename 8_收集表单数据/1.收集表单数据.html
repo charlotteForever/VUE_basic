@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 表单放在一个form里面 -->
+        <!-- 绑定提交事件，prevent阻止页面刷新 -->
+        <form action="" @submit.prevent='demo'>
+            账号：<input type="text" v-model.trim="account"><br><br>
+            密码：<input type="password" v-model="password"><br><br>
+            性别：
+            <!-- radio:要有name来保证复选，要有v-model来双向绑定，要有value来确定选中的值 接受value里的值-->
+            <!-- 配置value收集value里的值，不配置value收集checked（勾选上是true，不勾选上是false -->
+            男<input type="radio" name="sex" v-model="sex" value='male'>
+            女<input type="radio" name="sex" v-model="sex" value='famale'>
+            <br><br>
+            <!-- checkbox复选框，接受checked的值，vue里要以数组的形式来接收数据 -->
+            爱好：
+            学习<input type="checkbox" name="hobby" v-model='hobby' value='learning'>
+            打游戏<input type="checkbox" name="hobby" v-model='hobby' value='gaming'>
+            吃饭<input type="checkbox" name="hobby" v-model='hobby' value='eating'>
+            <br><br>
+            <!-- select选择框  -->
+            所属校区
+            <select v-model="city">
+                <option value="">请选择所属校区</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+            </select>
+            <br><br>
+            其他信息：<br>
+            <textarea name="" v-model.lazy="other" cols="30" rows="10">
+
+            </textarea>
+            <br><br>
+            <!-- 用radio的话，接受配置的value里的字符 -->
+            <input type="checkbox" v-model="accept"> 阅读并接受<a href="#">《用户协议》</a>
+            <br>
+            <button>提交</button>
+        </form>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                account: '',
+                password: '',
+                sex: '',
+                hobby: [],
+                city: 'beijing',
+                other: '',
+                accept: ''
+            },
+            methods: {
+                demo() {
+                    // 但是一般访问_data而是包装在一个user_info里面
+                    console.log(JSON.stringify(this._data))
+                }
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
