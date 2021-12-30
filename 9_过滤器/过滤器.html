@@ -11,18 +11,34 @@
 </head>
 
 <body>
-    <div id="root">
+    <div id="root1">
         <!-- 计算属性实现 -->
+        现在的时间是：{{fmttime}}
+        <br><br>
         <!-- methods实现实现 -->
         现在的时间是：{{fmttime}}
         <br><br>
-        现在的时间是：{{fmttime}}
+        <!--过滤器实现 -->
+        现在的时间是：{{time|timeFormater}}
+        <br><br>
+        <!-- 过滤器实现(传参) -->
+        现在的时间是：{{time|timeFormater('YYYY-MM-DD')|mySlice}}
+        <!-- 标签里的也可以使用过滤器（不止插值语法才可以使用 -->
+        <h3 :x='msg | mySlice'></h3>
+    </div>
+    <div id="root2">
+        @{{msg|mySlice}}
     </div>
     <script>
+        // 全局过滤器
+        Vue.filter('mySlice', function (str) {
+            return str.slice(0, 4)
+        })
         var vm = new Vue({
-            el: '#root',
+            el: '#root1',
             data: {
                 time: 1640790306472,
+                msg: 'hello caicai'
             },
             methods: {
 
@@ -31,6 +47,18 @@
                 fmttime() {
                     return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
                 }
+            },
+            filters: {
+                // 第一个参数是时间的值，第二个参数以剩余参数的形式传入参数
+                timeFormater(value, str = 'YYYY年MM月DD日 HH:mm:ss') {
+                    return dayjs(value).format(str);
+                }
+            }
+        })
+        new Vue({
+            el: '#root2',
+            data: {
+                msg: 'hello caicai'
             }
         })
     </script>
