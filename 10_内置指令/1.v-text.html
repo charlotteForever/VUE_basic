@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 插值语法写法 -->
+        <h3>你好，{{name}}</h3>
+        <!-- v-text写法 会把标签里自带的文字替换掉-->
+        <h3 v-text='name'>你好，</h3>
+        <!-- v-text 会把里面的全部当成普通文本 -->
+        <h3 v-text='sub'></h3>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'caicai',
+                sub: '<h3>haha</h3>'
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
