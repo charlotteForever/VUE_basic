@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 需求：点击按钮加入一个input之后，自动获取焦点 -->
+    <button id='btn'>点击新增一个input框</button>
+    <script>
+        let btn = document.getElementById('btn')
+        btn.onclick = () => {
+            // 创建一个元素
+            let input = document.createElement('input')
+
+            // 元素存在之后
+            input.className = 'demo'
+            input.value = 'haha'
+
+            // 把元素添加到页面里
+            document.body.appendChild(input)
+
+            // 在元素已经存在了之后
+            input.focus();
+            input.parentElement.style.backgroundColor = 'skyblue'
+        }
+    </script>
+</body>
+
+</html>

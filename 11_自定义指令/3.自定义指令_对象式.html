@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 自定义vue指令，v-xxx，封装若干对dom的操作 -->
+
+        <!-- 党对name的值进行修改时，会调用big函数 （模板被重新解析-->
+        <h3>{{name}}</h3>
+
+        <div>n的值：<span v-text="n"></span></div>
+        <div>放大十倍后的n值：<span v-big="n"></span></div>
+        <button @click="n++">点击n++</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                n: 1,
+                name: 'caicai'
+            },
+            directives: {
+                //第一个参数是获取到的元素，第二个参数是绑定在该指令身上的值
+                big(element, binding) {
+                    console.log(element, binding.value)
+                    // 把标签里的值换成binding.value*10，但并不改变value自身
+
+                    // 什么时候调用big函数？
+                    // 1.指令与元素绑定成功时
+                    // 2.每次模板重新解析时
+                    element.innerText = binding.value * 10
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
