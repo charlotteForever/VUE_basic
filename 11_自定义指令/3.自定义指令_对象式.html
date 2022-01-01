@@ -8,17 +8,17 @@
     <title>Document</title>
     <script src="../js/vue.js"></script>
 </head>
+<!-- 需求：页面刚呈现时，自动获取input框的焦点 -->
 
 <body>
     <div id="root">
-        <!-- 自定义vue指令，v-xxx，封装若干对dom的操作 -->
-
-        <!-- 党对name的值进行修改时，会调用big函数 （模板被重新解析-->
         <h3>{{name}}</h3>
-
+        <br>
         <div>n的值：<span v-text="n"></span></div>
-        <div>放大十倍后的n值：<span v-big="n"></span></div>
+        <br><br>
         <button @click="n++">点击n++</button>
+        <br><br>
+        <input type="text" v-fbind:value='n'>
     </div>
     <script>
         var vm = new Vue({
@@ -28,15 +28,20 @@
                 name: 'caicai'
             },
             directives: {
-                //第一个参数是获取到的元素，第二个参数是绑定在该指令身上的值
-                big(element, binding) {
-                    console.log(element, binding.value)
-                    // 把标签里的值换成binding.value*10，但并不改变value自身
-
-                    // 什么时候调用big函数？
-                    // 1.指令与元素绑定成功时
-                    // 2.每次模板重新解析时
-                    element.innerText = binding.value * 10
+                fbind: {
+                    // 指令和元素绑定之后
+                    bind(el, binding) {
+                        // 先实现基础的功能，把daya里的n值呈现在输入框内
+                        el.value = binding.value
+                    },
+                    // 指令所在的元素插入到页面之后
+                    inserted(el, binding) {
+                        el.focus()
+                    },
+                    // 指令所在的模板被重新编译之后
+                    update(el, binding) {
+                        el.value = binding.value
+                    },
                 }
             }
         })
