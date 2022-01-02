@@ -12,6 +12,8 @@
 <body>
     <div id="root">
         <h3 :style={opacity}>Vue生命周期</h3>
+        <button @click='opacity=1'>透明度设置为1</button>
+        <button @click='stop'>点我停止变换</button>
     </div>
     <script>
         var vm = new Vue({
@@ -19,14 +21,23 @@
             data: {
                 opacity: 1
             },
+            methods: {
+                stop() {
+                    this.$destroy();
+                }
+            },
             // 在真实dom挂载到页面上时，执行mounted
             mounted() {
-                setInterval(() => {
+                let timer = setInterval(() => {
                     this.opacity -= 0.01;
                     if (this.opacity <= 0) {
                         this.opacity = 1
                     }
                 }, 16)
+            },
+            beforeDestroy() {
+                // 释放计时器
+                clearInterval(this.timer)
             },
         })
     </script>
