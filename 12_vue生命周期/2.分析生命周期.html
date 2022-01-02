@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root" :x='n'>
+        <h3>n的值是{{n}}</h3>
+        <button @click='add'>点我n++</button>
+        <button @click='bye'>点我销毁vm</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                n: 1
+            },
+            // tempalte里面只有一个根，用一个div包裹
+            // template: `
+            // <div>
+            //     <h3>n的值是{{n}}</h3>
+            //      <button @click='n++'>点我n++</button>
+            // </div>
+            // `,
+            methods: {
+                add() {
+                    console.log('add')
+                    this.n++
+                },
+                bye() {
+                    console.log('bye')
+                    this.$destroy();
+                }
+            },
+            beforeCreate() {
+                console.log('beforeCreate')
+                // debugger
+            },
+            // 开始数据代理，vue实例里可以访问到data里的数据和methods里的方法
+            created() {
+                console.log('created')
+                // debugger
+            },
+            // 开始编译模板，生成虚拟DOM，存放在内存里
+            beforeMount() {
+                console.log(' beforeMount')
+                // debugger
+            },
+            // 把虚拟DOM转为真实DOM，并插入页面
+            mounted() {
+                console.log(' Mounted')
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate')
+            },
+            updated() {
+                console.log('updated')
+                this.n = 99
+            },
+            // destroy之后，点击add仍然可以打印输出，但是n的值不再改变 (add不是自定事件
+            beforeDestroy() {
+                console.log('beforeDestroy')
+                console.log(this.n)//仍然可以访问到
+            },
+            destroyed() {
+                console.log('destroyed')
+            },
+        })
+    </script>
+</body>
+
+</html>
