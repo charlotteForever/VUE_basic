@@ -11,6 +11,8 @@
 
 <body>
     <div id="root">
+        <h3>{{msg}}</h3>
+        <hr>
         <!-- 使用组件 -->
         <school></school>
         <hr>
@@ -38,6 +40,7 @@
             <div>
                 <h3>学生姓名:{{name}}</h3>
                 <h3>学生年龄:{{age}}</h3>
+                <button @click='addAge'>点我增加学生年龄</button>
             </div>
             `,
             data() {
@@ -46,9 +49,19 @@
                     age: 20
                 };
             },
+            methods: {
+                addAge() {
+                    // this是vue组件
+                    console.log(this)
+                    this.age++
+                }
+            },
         })
         var vm = new Vue({
             el: '#root',
+            data: {
+                msg: '这是我第一次使用组件'
+            },
             // 局部注册组件
             components: {
                 student: student,
