@@ -18,8 +18,10 @@
         <hr>
         <student></student>
     </div>
+    <div id="root2">
+        <school></school>
+    </div>
     <script>
-
         // 定义两个组件，一个名字为school，一个名字为student
         const school = Vue.extend({
             template: `
@@ -57,6 +59,10 @@
                 }
             },
         })
+
+        // 把student定义为全局组件,必须在局部的student组件定义了之后
+        Vue.component('student', student)
+
         var vm = new Vue({
             el: '#root',
             data: {
@@ -68,6 +74,13 @@
                 school: school
             }
 
+        })
+        new Vue({
+            el: '#root2',
+            components: {
+                // 定义之后还要注册
+                school: school
+            }
         })
     </script>
 </body>
