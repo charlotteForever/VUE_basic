@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>{{msg}}</h2>
+        <school></school>
+    </div>
+    <script>
+        // 组件的简写
+        const s = {
+            template: `
+            <div>
+                <h3>学校名{{name}}</h3>
+                <h3>地址{{address}}</h3>
+            </div>
+            `,
+            // 使用name配置组建在开发者工具中的名字
+            name: 'xuexiao',
+            data() {
+                return {
+                    name: '尚硅谷',
+                    address: '北京'
+                };
+            },
+        };
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                msg: '组件注意事项'
+            },
+            components: {
+                school: s
+            }
+        })
+    </script>
+</body>
+
+</html>
