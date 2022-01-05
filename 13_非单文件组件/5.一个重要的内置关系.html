@@ -14,6 +14,8 @@
         <school></school>
     </div>
     <script>
+        // vc可以访问到x
+        Vue.prototype.x = 99;
         const school = {
             template: `
             <div>
@@ -30,7 +32,9 @@
             },
             methods: {
                 showInfo() {
+                    // 仔细理解
                     console.log(this)
+                    console.log(this.x)
                 }
             }
         }
