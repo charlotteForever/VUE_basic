@@ -11,6 +11,7 @@ export default {
     return {
       name: "花椰菜",
       age: 18,
+      address: "hhh",
     };
   },
 };
