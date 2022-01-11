@@ -28,9 +28,9 @@
                 name: 'caicai'
             },
             directives: {
-                //第一个参数是获取到的元素，第二个参数是绑定在该指令身上的值
+                //第一个参数是获取到的元素，第二个参数的value属性是绑定在该标签身上的值
                 big(element, binding) {
-                    console.log(element, binding.value)
+                    console.log(element, binding)
                     // 把标签里的值换成binding.value*10，但并不改变value自身
 
                     // 什么时候调用big函数？
