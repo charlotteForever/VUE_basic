@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="text" placeholder="请输入小写字母" v-model="str">
+        <button @click="changeCase">点击改为大写</button>
+        <h3>大写字母为：{{upperStr}}</h3>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                str: '',
+                upperStr: ''
+            },
+            methods: {
+                changeCase() {
+                    this.upperStr = this.str.toUpperCase()
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
